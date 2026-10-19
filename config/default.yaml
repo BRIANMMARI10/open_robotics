@@ -1,0 +1,46 @@
+# Default parameters for orient-print PoC
+
+project:
+  name: orient-print-poc
+  output_dir: data/output
+
+# Path to test STL (override via CLI --stl)
+input:
+  stl: data/input/test_part.stl
+
+# Conventional FDM baseline assumptions
+printer:
+  nozzle_diameter_mm: 0.4
+  layer_height_mm: 0.2
+  line_width_mm: 0.4
+  build_volume_mm: [220, 220, 250]  # X, Y, Z
+
+# Geometry analysis
+analysis:
+  overhang_angle_deg: 45.0        # faces steeper than this need support (baseline)
+  min_face_area_mm2: 1.0          # ignore tiny faces for direction candidates
+  gravity_direction: [0, 0, -1]   # build frame: -Z is down
+
+# Orientation planning (Phase 1 heuristics — will evolve)
+planning:
+  max_orientations: 6             # cap reorientations per part
+  candidate_directions:           # seed directions to evaluate (unit vectors)
+    - [0, 0, 1]                   # conventional: print from +Z
+    - [0, 0, -1]
+    - [1, 0, 0]
+    - [-1, 0, 0]
+    - [0, 1, 0]
+    - [0, -1, 0]
+  prefer_min_reorientations: true
+
+# Simulation / collision (stubs for now)
+simulation:
+  nozzle_length_mm: 20.0
+  nozzle_radius_mm: 0.2
+  check_self_collision: true
+
+# Visualization
+viz:
+  save_png: true
+  show_interactive: false
+  dpi: 150

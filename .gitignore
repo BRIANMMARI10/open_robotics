@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+dist/
+build/
+.venv/
+venv/
+.env
+
+# IDE
+.idea/
+.vscode/
+*.swp
+.DS_Store
+
+# Project outputs (keep structure, ignore generated artifacts)
+data/output/**
+!data/output/.gitkeep
+
+# Large mesh files (keep test STL out of git unless small)
+data/input/*.stl
+data/input/*.3mf
+!data/input/.gitkeep
+!data/input/README.md
+
+# Notebooks checkpoints
+.ipynb_checkpoints/
+
+# Logs
+*.log
